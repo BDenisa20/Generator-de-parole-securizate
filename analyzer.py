@@ -26,3 +26,13 @@ def calculate_entrpy(password):
    
    entropy=len(password)*math.log2(pool_size)
    return round(entropy,2)
+
+def password_strenght(entropy):
+   if entropy < 30:
+      return "SLABA", 25
+   elif entropy < 50:
+      return "MEDIE", 50
+   elif entropy < 75:
+      return "PUTERNICA", 75
+   else:
+      return "FOARTE PUTERNICA", 100
