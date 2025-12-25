@@ -36,3 +36,17 @@ def password_strenght(entropy):
       return "PUTERNICA", 75
    else:
       return "FOARTE PUTERNICA", 100
+   
+def analyze_password(password):
+   problems=[]
+   sugestions=[]
+   if len(password)<12:
+      problems.append("Prea scurta")
+      sugestions.append("Creste lungimea parolei")
+   if not any(c.islower() for c in password):
+      problems.append("Lipsesc litere mici")
+      sugestions.append("Adauga litere mici")
+   if not any(c.isupper() for c in password):
+      problems.append("Lipsesc litere mari")
+      sugestions.append("Adauga litere mari")
+
