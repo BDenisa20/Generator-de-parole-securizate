@@ -10,13 +10,13 @@ def load_common_password(file_path="common_pasword.txt"):
   
 COMMON_PASSWORD=load_common_password()
 
-def calculate_entrpy(password):
+def calculate_entropy(password):
    pool_size=0
    if any(c in string.ascii_lowercase for c in password):
       pool_size=pool_size+26
    if any(c in string.ascii_uppercase for c in password):
       pool_size=pool_size+26
-   if any(c in string.ascii_digits for c in password):
+   if any(c in string.digits for c in password):
       pool_size=pool_size+10
    if any(c in string.punctuation for c in password):
       pool_size=pool_size+len(string.punctuation)
@@ -39,14 +39,31 @@ def password_strenght(entropy):
    
 def analyze_password(password):
    problems=[]
-   sugestions=[]
+   suggestions=[]
    if len(password)<12:
       problems.append("Prea scurta")
-      sugestions.append("Creste lungimea parolei")
+      suggestions.append("Creste lungimea parolei")
    if not any(c.islower() for c in password):
       problems.append("Lipsesc litere mici")
-      sugestions.append("Adauga litere mici")
+      suggestions.append("Adauga litere mici")
    if not any(c.isupper() for c in password):
       problems.append("Lipsesc litere mari")
-      sugestions.append("Adauga litere mari")
-
+      suggestions.append("Adauga litere mari")
+   if not any(c in string.punctuation for c in password):
+      problems.append("Lipsesc caractere speciale")
+      suggestions.append("Adauga caractere speciale")
+   if password.lower() in COMMON_PASSWORD:
+      problems.append("Parola este in lista de parole comune")
+      suggestions.append("Evita parolele comune")
+   
+   entropy=calculate_entropy(password)
+   strength,score=password_strenght(entropy)
+   
+   return {
+      "password":password,
+      "entropy":entropy,
+      "strenght":strength,
+      "score":score,
+      "problems":problems,
+      "suggestions":suggestions
+   }
