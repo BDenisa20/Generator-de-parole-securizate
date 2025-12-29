@@ -1,14 +1,14 @@
 import math
 import string 
  
-def load_common_password(file_path="common_pasword.txt"):
+def load_common_password(file_path="common_password.txt"):
   try:
      with open(file_path, "r", encoding="utf-8") as f:
         return set(line.strip().lower() for line in f)
   except FileNotFoundError:
      return set()
   
-COMMON_PASSWORD=load_common_password()
+COMMON_PASSWORDS=load_common_password()
 
 def calculate_entropy(password):
    pool_size=0
@@ -27,7 +27,7 @@ def calculate_entropy(password):
    entropy=len(password)*math.log2(pool_size)
    return round(entropy,2)
 
-def password_strenght(entropy):
+def password_strength(entropy):
    if entropy < 30:
       return "SLABA", 25
    elif entropy < 50:
@@ -52,17 +52,17 @@ def analyze_password(password):
    if not any(c in string.punctuation for c in password):
       problems.append("Lipsesc caractere speciale")
       suggestions.append("Adauga caractere speciale")
-   if password.lower() in COMMON_PASSWORD:
+   if password.lower() in COMMON_PASSWORDS:
       problems.append("Parola este in lista de parole comune")
       suggestions.append("Evita parolele comune")
    
    entropy=calculate_entropy(password)
-   strength,score=password_strenght(entropy)
+   strength,score=password_strength(entropy)
    
    return {
       "password":password,
       "entropy":entropy,
-      "strenght":strength,
+      "strength":strength,
       "score":score,
       "problems":problems,
       "suggestions":suggestions
