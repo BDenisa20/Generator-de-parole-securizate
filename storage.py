@@ -23,3 +23,9 @@ def save_analysis(result, file_path="history.json"):
 
     with open(file_path,"w",encoding="utf-8") as f:
         json.dump(history,f,indent=4)  
+def load_history(file_path="history.json"):
+    try:
+        with open(file_path, "r",encoding="utf-8") as f:
+           return json.load(f)
+    except FileNotFoundError:
+        return [] 
