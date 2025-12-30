@@ -17,3 +17,20 @@ def main():
     parser.add_argument("--check",type=str,help="Analizeaza o parola existenta")
 
     args=parser.parse_args()
+    if args.check:
+        result=analyze_password(args.check)
+
+        print(f'Analiza parolei "{args.check}:')
+        print(f'Putere: {result["strength"]}({result["score"]}/100)')
+        print("Probleme: ")
+        for p in result["problems"]:
+            print(f"- {p}")
+        
+        if result["suggestions"]:
+            print("Sugestii:")
+            for s in result["suggestions"]:
+               print(f"- {s}") 
+
+        save_analysis(result)
+        return
+    
