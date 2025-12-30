@@ -8,7 +8,7 @@ def main():
     parser=argparse.ArgumentParser(
         description="Generator si analizator de parole securizate"
     )
-    
+
     parser.add_argument("--length",type=int,help="Lunginea parolei")
     parser.add_argument("--upper",action="store_true",help="Incude litere mari")
     parser.add_argument("--digits",action="store_true",help="Include cifre")
@@ -20,7 +20,7 @@ def main():
     if args.check:
         result=analyze_password(args.check)
 
-        print(f'Analiza parolei "{args.check}:')
+        print(f'Analiza parolei "{args.check}":')
         print(f'Putere: {result["strength"]}({result["score"]}/100)')
         print("Probleme: ")
         for p in result["problems"]:
@@ -34,3 +34,23 @@ def main():
         save_analysis(result)
         return
     
+    if args.length:
+        password=generate_password(
+           length=args.length,
+           use_lower=True,
+           use_upper=args.upper,
+           use_digits=args.digits,
+           use_special=args.special
+        ) 
+
+        result=analyze_password(password)
+
+        print("Parola generata:", password)
+        print(f'Putere: {result["strength"]}')
+        print(f'Entropie: {result["entropy"]}')
+        print("Salvata in istoric")
+
+        save_analysis(result)
+
+if __name__=="__main__":
+    main()  
