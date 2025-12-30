@@ -2,7 +2,7 @@ import argparse
 
 from generator import generate_password
 from analyzer import analyze_password
-from storage import save_analysis
+from storage import save_analysis,load_history
 
 def main():
     parser=argparse.ArgumentParser(
@@ -16,7 +16,32 @@ def main():
 
     parser.add_argument("--check",type=str,help="Analizeaza o parola existenta")
 
+    parser.add_argument(
+        "--history",
+        choices=["view"],
+        help="Afisaza istoricul puterilor"
+    )
+
     args=parser.parse_args()
+
+    if args.history=="view":
+       history=load_history()
+      
+       if not history:
+            print("Istoric gol.")
+            return
+       
+       print("Istoric parole:")
+       print("-" * 30)
+
+       for entry in history:
+        print(f'Data: {entry["date"]}')
+        print(f'Entropie: {entry["entropy"]}')
+        print(f'Putere: {entry["strength"]} ({entry["score"]}/100)')
+        print(f'Hash: {entry["hash"]}')
+        print("-" * 30)
+       return 
+
     if args.check:
         result=analyze_password(args.check)
 
