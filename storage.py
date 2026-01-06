@@ -1,9 +1,11 @@
 import json
 import hashlib
+import base64
 from datetime import datetime
 
 def hash_password(password):
-    return hashlib.sha256(password.encode()).hexdigest()
+    sha=hashlib.sha256(password.encode()).digest()
+    return base64.b64encode(sha).decode()
 
 def save_analysis(result, file_path="history.json"):
     entry={
