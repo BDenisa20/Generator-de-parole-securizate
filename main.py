@@ -59,6 +59,25 @@ def main():
         save_analysis(result)
         return 
     
+    if args.batch:
+        for i in range(args.batch):
+            password=generate_password(
+                length=args.length,
+                use_lower=True,
+                use_upper=args.upper,
+                use_digits=args.digits,
+                use_special=args.special
+            )
+            result=analyze_password(password)
+
+            print(f"\nParola {i+1}:{password}")
+            print("Putere:",result["strength"])
+            print("Entropie:",result["entropy"])
+
+            save_analysis(result)
+        print("\nToate parolele au fost salvate in istoric")
+        return    
+
     if args.length:
         password=generate_password(
            length=args.length,
