@@ -9,7 +9,7 @@ def main():
         description="Generator si analizator de parole securizate"
     )
 
-    parser.add_argument("--length",type=int,help="Lunginea parolei")
+    parser.add_argument("--length",type=int,default=12,help="Lunginea parolei")
     parser.add_argument("--upper",action="store_true",help="Incude litere mari")
     parser.add_argument("--digits",action="store_true",help="Include cifre")
     parser.add_argument("--special",action="store_true",help="Include caractere speciale")
