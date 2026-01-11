@@ -81,7 +81,6 @@ Coordonează execuția întregii aplicații.Definește argumentele din linia de 
 -Curs Metode Avansate de Programare, Universitatea Politehnica Timișoara, 2025-2026
 -Documentația oficială Python https://docs.python.org/3/
 -Resurse despre criptografie și entropie parole
--GitHub .gitignore Templates https://github.com/github/gitignore
 -Asistență ChatGPT pentru optimizarea codului
 
 ## Pașii de rulare a proiectului:
