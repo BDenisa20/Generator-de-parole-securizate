@@ -126,9 +126,9 @@ Putere: FOARTE PUTERNICA
 Entropie: 99.59
 Salvata in istoric
 # cu Docker 
-docker run --rm denisaaaa/generator-parole --length 16 --digits --special
-
 docker pull denisaaaa/generator-parole:latest
+
+docker run --rm denisaaaa/generator-parole --length 16 --digits --special
 
 Parola generata: !7l{1%z3wt*:$,v{
 Putere: FOARTE PUTERNICA
