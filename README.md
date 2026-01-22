@@ -127,14 +127,18 @@ Entropie: 99.59
 Salvata in istoric
 # cu Docker 
 docker run --rm denisaaaa/generator-parole --length 16 --digits --special
+
 docker pull denisaaaa/generator-parole:latest
+
 Parola generata: !7l{1%z3wt*:$,v{
 Putere: FOARTE PUTERNICA
 Entropie: 97.4
 Salvata in istoric
 
 docker pull denisaaaa/generator-parole:latest
+
 docker run --rm denisaaaa/generator-parole --check pandantiv14
+
 Analiza parolei "pandantiv14":
 Putere: PUTERNICA(75/100)
 Probleme:
