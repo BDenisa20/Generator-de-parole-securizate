@@ -86,13 +86,18 @@ Coordonează execuția întregii aplicații.Definește argumentele din linia de 
 ## Pașii de rulare a proiectului:
 # cu Docker:
 se copiaza comanda: docker pull denisaaaa/generator-parole:latest
+
 se rulează folosind comanda: docker run --rm denisaaaa/generator-parole --length 16 --digits --special
 
 # fara Docker (rulare locală):
 python main.py --length 16 --upper --digits --special
+
 python main.py --check parola123
+
 python main.py --memorable --words 3
+
 python main.py --batch 5
+
 python main.py --history view
 
 ## Exemplu de output:
