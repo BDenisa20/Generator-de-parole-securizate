@@ -85,10 +85,9 @@ Coordonează execuția întregii aplicații.Definește argumentele din linia de 
 
 ## Pașii de rulare a proiectului:
 # cu Docker:
--Construiește imaginea Docker:
-    docker build -t password-gen .
--Ruleaza containerul:
-     docker run --rm password-gen --length 16 --upper --digits --special
+se copiaza comanda: docker pull denisaaaa/generator-parole:latest
+se rulează folosind comanda: docker run --rm denisaaaa/generator-parole --length 16 --digits --special
+
 # fara Docker (rulare locală):
 python main.py --length 16 --upper --digits --special
 python main.py --check parola123
@@ -97,13 +96,14 @@ python main.py --batch 5
 python main.py --history view
 
 ## Exemplu de output:
-# python main.py --length 16 --upper --digits --special
+# fara Docker (rulare locala)
+python main.py --length 16 --upper --digits --special
 Parola generata: k0T^v>O?4)Uwcl!e
 Putere: FOARTE PUTERNICA
 Entropie: 104.87
 Salvata in istoric
 
-# python main.py --check parola12
+python main.py --check parola12
 Analiza parolei "parola12":
 Putere: MEDIE(50/100)
 Probleme:
@@ -115,8 +115,28 @@ Sugestii:
 - Adauga litere mari
 - Adauga caractere speciale
 
-# python main.py --memorable --words 3
+python main.py --memorable --words 3
 Parola memorabila generata: munte-caine-stele
 Putere: FOARTE PUTERNICA
 Entropie: 99.59
 Salvata in istoric
+# cu Docker 
+docker run --rm denisaaaa/generator-parole --length 16 --digits --special
+docker pull denisaaaa/generator-parole:latest
+Parola generata: !7l{1%z3wt*:$,v{
+Putere: FOARTE PUTERNICA
+Entropie: 97.4
+Salvata in istoric
+
+docker pull denisaaaa/generator-parole:latest
+docker run --rm denisaaaa/generator-parole --check pandantiv14
+Analiza parolei "pandantiv14":
+Putere: PUTERNICA(75/100)
+Probleme:
+- Prea scurta
+- Lipsesc litere mari
+- Lipsesc caractere speciale
+Sugestii:
+- Creste lungimea parolei
+- Adauga litere mari
+- Adauga caractere speciale
